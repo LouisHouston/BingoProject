@@ -34,14 +34,13 @@
     document.getElementById('sendMessage').addEventListener('click', sendMessage);
 
     // listening for mesages from the serverrrr
-    socket.on("message", (messageData) => {
-        const content = messageData.content;
-        const sender = messageData.sender;
-        const timestamp = messageData.timestamp;
+    socket.on("newMessage", (messageData) => {
+    const content = messageData.message_content;
+    const sender = messageData.player_name;
+    const timestamp = messageData.message_time;
 
-        const li = document.createElement('li');
-        li.textContent = timestamp + ' ' + sender + ' ' + content ;
-        console.log(messageData);
-        document.querySelector('ul').appendChild(li);
-    });
+    const li = document.createElement('li');
+    li.textContent = `${timestamp} ${sender} ${content}`;
+    document.querySelector('ul').appendChild(li);
+});
 </script>
