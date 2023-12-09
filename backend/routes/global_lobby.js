@@ -25,32 +25,29 @@ router.get("/", requireLogin, (_request, response) => {
     }
 });
 
-io.on("connection", (socket) => {
-    console.log("A user connected");
+io.on("message", (data) => {
+    const { content, sender, timestamp } = data;
 
-    socket.on("message", (data) => {
+    const db = configureDatabase();
 
-        const { content, sender, timestamp } = data;
+    db.query("INSERT INTO messages (player_name, message_time, message_content) VALUES ($1, $2, $3)", [sender, timestamp, content], (error, result) => {
+        if (error) {
+            console.error("Error saving message to the database:", error);
+        } else {
+            // Fetch the inserted message from the database
+            db.query("SELECT * FROM messages WHERE message_id = $1", [result.rows[0].message_id], (err, res) => {
+                if (err) {
+                    console.error("Error fetching the inserted message:", err);
+                } else {
+                    const insertedMessage = res.rows[0];
 
-        db.connect((err) => {
-            if (err) {
-                console.error('Database connection error:', err);
-            } else {
-                console.log('Connected to the database');
-    
-                db.query("INSERT INTO messages (player_name, message_time, message_content) VALUES ($1, $2, $3)", [sender, timestamp, content], (error, result) => {
-                    if (error) {
-                        console.error("Error saving message to the database:", error);
-                    } else {
-                        console.log('Message inserted successfully');
-                        io.emit("message", data);
-                    }
-    
-                    db.end();
-                });
-            }
-        });
+                    // Emit the new message to all connected clients
+                    io.emit("newMessage", insertedMessage);
+                }
+            });
+        }
     });
+
     
 
     socket.on("disconnect", () => {
