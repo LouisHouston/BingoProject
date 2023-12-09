@@ -34,6 +34,19 @@ router.get("/", requireLogin, (_request, response) => {
     
 });
 
+function checkForNewMessages() {
+    db.query("SELECT * FROM messages ORDER BY message_time DESC LIMIT 1", (error, results) => {
+        if (error) {
+            console.error("Error fetching new messages:", error);
+        } else {
+            const latestMessage = results.rows[0];
+            io.emit("newMessage", latestMessage);
+        }
+    });
+}
+
+setInterval(checkForNewMessages, 1000);
+
 io.on("message", (data) => {
     const { content, sender, timestamp } = data;
 
@@ -62,5 +75,7 @@ io.on("message", (data) => {
 });
 
 router.io = io;
+
+checkForNewMessages();
 
 module.exports = router;
