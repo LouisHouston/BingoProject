@@ -1,47 +1,56 @@
-<%- include('template', { pageTitle: 'Global Lobby', pageContent:'Lobby Time@' }) %>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lobby</title>
+    <link rel="stylesheet" href="/styles/pico.css" />
+    <link rel="stylesheet" href="/styles/chat.css" />
+    <script src="/scripts/chat.js" defer></script>
+    <script src="/scripts/lobby.js" defer></script>
+  </head>
+  <body>
+    <nav class="container">
+      <ul>
+        <li>User: <%=user.username %></li>
+        <li>Email: <%=user.email %></li>
+        <li>Score: <%=user.gameswon %> / <%=user.gamesplayed %></li>
+      </ul>
+      <ul>
+        <li><a href="/">Login</a></li>
+        <li><a href="/auth/logout">Logout</a></li>
+        <li><a href="/lobby">Lobby</a></li>
+      </ul>
+    </nav>
+    <main class="container">
+      <h1>BINGO Game Lobby</h1>
+      <!--h2><%= user.id %> <%= user.email %> <%= user.username %> </h2-->
+      <div class="grid">
+        <div>
+          <h2>Available Games</h2>
+          <section id="game-list">
+            <ul>
+              <% availableGames.forEach(game => { %>
+              <li>
+                <a href="/games/<%= game.id %>/join">Join Game  <%= game.id %></a>
+              </li>
+              <% }) %>
+            </ul>
+          </section>
 
-<form>
-    <input type="text" placeholder="Your Message">
-    <button id="sendMessage">Send</button>
-</form>
+          <template id="join-game-entry">
+            <li>
+              <a href=""></a>
+            </li>
+          </template>
 
-<ul></ul>
+          <form action="/games/create" method="get">
+            <button type="submit">Create Game</button>
+          </form>
+        </div>
 
-<script src="https://cdn.socket.io/4.1.2/socket.io.min.js"></script>
-
-<script> // we should probably move this to front end global_lobby.js and then include the script fk it
-    const socket = io.connect("http://localhost:3000");
-
-    function sendMessage(e) {
-        e.preventDefault();
-        const input = document.querySelector('input');
-        if (input.value) {
-            const messageData = {
-                content: input.value,
-                sender: '<%= user.username.username %>', 
-                timestamp: new Date().toISOString().slice(0, 19).replace("T", " ")  // Format as 'YYYY-MM-DD HH:MI:SS'
-            };
-        
-        socket.emit("message", messageData);
-        input.value = "";
-    }
-
-
-    input.focus();
-}
-
-
-    document.getElementById('sendMessage').addEventListener('click', sendMessage);
-
-    // listening for mesages from the serverrrr
-    socket.on("message", (messageData) => {
-        const content = messageData.content;
-        const sender = messageData.sender;
-        const timestamp = messageData.timestamp;
-
-        const li = document.createElement('li');
-        li.textContent = timestamp + ' ' + sender + ' ' + content ;
-        console.log(messageData);
-        document.querySelector('ul').appendChild(li);
-    });
-</script>
+        <%- include('partials/chat', { roomId: 0 }) %>
+      </div>
+    </main>
+  </body>
+</html>
