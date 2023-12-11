@@ -1,13 +1,13 @@
 <nav>
-    <a href="/" > Home</a>  
+    <a class="header-button" href="/" > Home</a>  
     <% if (loggedIn) { %>
-        <a href="/auth/logout"> Logout</a>
-        <a href="/creategame">Create Game</a>
-        <a href="/activegames"> Your Games</a>
-        <a href="/lobby" > Lobby</a>
+        <a class="header-button" href="/auth/logout"> Logout</a>
+        <a href="/creategame">Create Game</a> <!--Nina could you make a button for this-->
+    <a href="/activegames"> Your Games</a> <!--Nina could you make a button for this-->
+    <a class="header-button" href="/lobby" > Lobby</a>
     <% } else { %>
-        <a href="/login"> Login</a>
+        <a class="header-button" href="/login"> Login</a>
     <% } %>
-    
-    <a href="/signup" > Sign Up</a>
+
+    <a class="header-button" href="/signup" > Sign Up</a>
 </nav>

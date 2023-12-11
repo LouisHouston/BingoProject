@@ -12,21 +12,8 @@
 
 <body>
     <header>
-        
-        <%- include('./partials/navbar.ejs') %> <!-- My code here -->
         <img src="/static/images/bingo.png" alt="Bingo Logo" width="480.25" height="132.5">
-    <nav>
-        <a class="header-button" href="/" > Home</a>  
-        <% if (loggedIn) { %>
-            <a class="header-button" href="/auth/logout"> Logout</a>
-        <% } else { %>
-            <a class="header-button" href="/login"> Login</a>
-        <% } %>
-        
-        <a class="header-button" href="/signup" > Sign Up</a>
-        <a class="header-button" href="/game" > Game</a>
-        <a class="header-button" href="/lobby" > Lobby</a>
-    </nav>
+        <%- include('./partials/navbar.ejs') %> <!-- My code here -->
     </header>
         <%= pageContent %>
 </body>
