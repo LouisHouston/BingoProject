@@ -8,15 +8,13 @@ DROP TABLE IF EXISTS "bingo_ball" CASCADE;
 DROP TABLE IF EXISTS "player_gamechat" CASCADE;
 
 CREATE TABLE "player" (
-  "id" SERIAL PRIMARY KEY,
-  "username" varchar(255) NOT NULL,
+  "username" varchar(255) PRIMARY KEY NOT NULL,
   "email" varchar(255) NOT NULL,
   "password" varchar(255) NOT NULL
 );
 
 CREATE TABLE "game" (
-  "id" SERIAL PRIMARY KEY,
-  "game_code" VARCHAR(255),
+  "game_code" VARCHAR(255) PRIMARY KEY NOT NULL,
   "game_name" varchar(255),
   "max_players" SMALLINT,
   "password" varchar(255),
@@ -26,22 +24,22 @@ CREATE TABLE "game" (
 
 CREATE TABLE "gamechat" (
   "id" SERIAL PRIMARY KEY,
-  "user_id" int NOT NULL,
-  "game_id" int NOT NULL,
-  "message" text NOT NULL,
+  "username" VARCHAR(255) NOT NULL,
+  "game_id" VARCHAR(255) NOT NULL,
+  "message" VARCHAR(255) NOT NULL,
   "time_sent" timestamp NOT NULL
 );
 
 CREATE TABLE "player_card" (
   "id" SERIAL PRIMARY KEY,
-  "game_id" int NOT NULL,
-  "player_id" int NOT NULL,
+  "game_id" VARCHAR(255) NOT NULL,
+  "player_id" VARCHAR(255) NOT NULL,
   "is_checked_in" boolean,
   "is_winner" boolean
 );
 
 CREATE TABLE "pulled_balls" (
-  "game_id" int NOT NULL,
+  "game_id" VARCHAR(255) NOT NULL,
   "bingo_ball_id" int NOT NULL
 );
 
@@ -64,20 +62,20 @@ CREATE UNIQUE INDEX ON "player_card" ("game_id", "player_id");
 CREATE UNIQUE INDEX ON "pulled_balls" ("game_id", "bingo_ball_id");
 
 CREATE TABLE "player_gamechat" (
-  "player_id" int,
+  "player_id" VARCHAR(255),
   "gamechat_id" int,
   PRIMARY KEY ("player_id", "gamechat_id"),
-  FOREIGN KEY ("player_id") REFERENCES "player" ("id"),
+  FOREIGN KEY ("player_id") REFERENCES "player" ("username"),
   FOREIGN KEY ("gamechat_id") REFERENCES "gamechat" ("id")
 );
 
-ALTER TABLE "gamechat" ADD FOREIGN KEY ("game_id") REFERENCES "game" ("id") ON DELETE CASCADE;
+ALTER TABLE "gamechat" ADD FOREIGN KEY ("game_id") REFERENCES "game" ("game_code") ON DELETE CASCADE;
 
-ALTER TABLE "player_card" ADD FOREIGN KEY ("game_id") REFERENCES "game" ("id") ON DELETE CASCADE;
+ALTER TABLE "player_card" ADD FOREIGN KEY ("game_id") REFERENCES "game" ("game_code") ON DELETE CASCADE;
 
-ALTER TABLE "player_card" ADD FOREIGN KEY ("player_id") REFERENCES "player" ("id") ON DELETE CASCADE;
+ALTER TABLE "player_card" ADD FOREIGN KEY ("player_id") REFERENCES "player" ("username") ON DELETE CASCADE;
 
-ALTER TABLE "pulled_balls" ADD FOREIGN KEY ("game_id") REFERENCES "game" ("id") ON DELETE CASCADE;
+ALTER TABLE "pulled_balls" ADD FOREIGN KEY ("game_id") REFERENCES "game" ("game_code") ON DELETE CASCADE;
 
 ALTER TABLE "pulled_balls" ADD FOREIGN KEY ("bingo_ball_id") REFERENCES "bingo_ball" ("id") ON DELETE CASCADE;
 
