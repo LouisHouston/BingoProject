@@ -2,7 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="../../frontend/static/templatestyle.css">
+    <link rel="stylesheet" type="text/css" href="/static/templatestyle.css">
+    <link href='https://fonts.googleapis.com/css?family=ADLaM Display' rel='stylesheet'>
+    <link rel="shortcut icon" href="/images/favicon 2.ico"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> <%= pageTitle %> </title>
 </head>
@@ -10,10 +12,22 @@
 
 <body>
     <header>
-        <%- include('./partials/navbar.ejs') %>
+        
+        <%- include('./partials/navbar.ejs') %> <!-- My code here -->
+        <img src="/static/images/bingo.png" alt="Bingo Logo" width="480.25" height="132.5">
+    <nav>
+        <a class="header-button" href="/" > Home</a>  
+        <% if (loggedIn) { %>
+            <a class="header-button" href="/auth/logout"> Logout</a>
+        <% } else { %>
+            <a class="header-button" href="/login"> Login</a>
+        <% } %>
+        
+        <a class="header-button" href="/signup" > Sign Up</a>
+        <a class="header-button" href="/game" > Game</a>
+        <a class="header-button" href="/lobby" > Lobby</a>
+    </nav>
     </header>
-    <main>
         <%= pageContent %>
-    </main>
 </body>
 </html>

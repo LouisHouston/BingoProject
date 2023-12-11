@@ -1,1 +1,49 @@
-<%- include('template', { pageTitle: 'Global Lobby', pageContent:'Lobby Time@' }) %>
+<%- include('template', { pageTitle: 'Global Lobby', pageContent:'' }) %>
+<main>
+    <form>
+        <input type="text" placeholder="Your Message">
+        <button id="sendMessage">Send</button>
+    </form>
+    
+    <ul></ul>
+    
+    <script src="https://cdn.socket.io/4.1.2/socket.io.min.js"></script>
+    
+    <script> // we should probably move this to front end global_lobby.js and then include the script fk it
+        const socket = io.connect("http://localhost:3000");
+    
+        function sendMessage(e) {
+            e.preventDefault();
+            const input = document.querySelector('input');
+            if (input.value) {
+                const messageData = {
+                    content: input.value,
+                    sender: '<%= user.username.username %>', 
+                    timestamp: new Date().toISOString().slice(0, 19).replace("T", " ")  // Format as 'YYYY-MM-DD HH:MI:SS'
+                };
+            
+            socket.emit("message", messageData);
+            input.value = "";
+        }
+    
+    
+        input.focus();
+    }
+    
+    
+        document.getElementById('sendMessage').addEventListener('click', sendMessage);
+    
+        // listening for mesages from the serverrrr
+        socket.on("message", (messageData) => {
+            const content = messageData.content;
+            const sender = messageData.sender;
+            const timestamp = messageData.timestamp;
+    
+            const li = document.createElement('li');
+            li.textContent = timestamp + ' ' + sender + ' ' + content ;
+            console.log(messageData);
+            document.querySelector('ul').appendChild(li);
+        });
+    </script>
+    
+</main>
