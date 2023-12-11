@@ -1,0 +1,138 @@
+
+      
+      body {
+       text-align: center;
+      }
+
+      #sendchat-btn {
+        background-color: #4caf50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      #bingo-btn-user-x {
+        background-color: #4caf50; 
+        color: white;
+        padding: 10px 10px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      .blue-text {
+        color: #008cba; 
+      }
+
+      #chat-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 20px;
+      }
+
+      .bingo-card-container {
+        display: flex;
+        justify-content: space-around;
+        margin-bottom: 20px;
+      }
+
+      .bingo-card {
+        border-collapse: collapse;
+        margin-top: 20px;
+      }
+
+      .bingo-card td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: center;
+        cursor: pointer;
+      }
+
+      .bingo-card th {
+        background-color: #008cba;
+        color: white;
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: center;
+      }
+
+      #chat-history-container {
+        width: 25%; 
+        text-align: left; 
+      }
+
+      #chat-history {
+        border: 1px solid #ccc;
+        padding: 10px;
+        max-width: 100%; 
+        overflow-y: scroll;
+        height: 100px;
+      }
+
+      .selected {
+        background-color: blue !important;
+        color: white;
+      }
+      .won{
+        background-color: red !important;
+        color: white;
+
+      }
+
+      #draw-numbers-container {
+        margin-top: 20px;
+        
+
+      }
+
+      #draw-numbers-textarea {
+        width: 100px;
+        height: 100px;
+        font-size: 18px; 
+        resize: none;
+        overflow-y: scroll; 
+      }
+
+      #draw-numbers-btn {
+        background-color: #4caf50; 
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-top: 10px;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+      }
+      #draw-numbers-stop-btn {
+        background-color: #4caf50; 
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-top: 10px;
+      }
+
+      .new-number {
+        font-weight: bold;
+        color: green; 
+      }
+      #clickable-numbers-list {
+        list-style-type: none;
+        padding: 0;
+        display: grid;
+        grid-template-columns: repeat(25, 1fr); /* Adjusted for 25 numbers per row */
+        gap: 10px; /* Adjust the gap as needed */
+    }
+    
+    #clickable-numbers-list li {
+        border: 1px solid #ccc;
+        padding: 10px;
+        text-align: center;
+        cursor: pointer;
+    }
+    

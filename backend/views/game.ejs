@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -10,5 +10,169 @@
     <%- include ('./partials/navbar.ejs', { pageTitle: 'In Game', pageContent:'GAME TIME'})%>
     <h1>Welcome to the Game!</h1>
     <%- include ('./partials/chat.ejs', {gamecode}) %>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Game <%= id %> </title>
+    <link rel="stylesheet" href="/styles/pico.css" />
+    <link rel="stylesheet" href="/styles/game.css" />
+    <script src="/scripts/chat.js" defer></script>
+    <script src="/scripts/games.js" defer></script>
+    <script src="/scripts/bingo_db.js"></script>
+    <!--script src="/socket.io-client/dist/socket.io.js"></script-->
+
+    
+  </head>
+  <body>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        
+        const game_over = '<%= game_over %>';
+        const user_email = '<%= user.email %>';
+
+        if (game_over == 1) {
+          document.getElementById('draw-numbers-btn').disabled = true;
+          document.getElementById('bingo-btn-user-x').disabled = true;
+        }
+        if (user_email.includes('admin') ){
+           console.log("Do nothing");
+        } else {
+         document.getElementById('draw-numbers-btn').style.display = 'none';
+         document.getElementById('draw-numbers-textarea').style.display = 'none';
+        }
+
+
+
+      });
+    </script>
+    <nav class="container">
+      <ul>
+        <li>BINGO Game for User:  <%= user.username %> </li>
+        <li>Score: <%= user.gameswon %> / <%= user.gamesplayed %></li>
+      </ul>
+      <ul>
+        <li><a href="/">Login</a></li>
+        <li><a href="/auth/logout">Logout</a></li>
+        <li><a href="/lobby">Lobby</a></li>
+        
+      </ul>
+    </nav>
+    <main class="container">
+      <h1>Game <%= id %>  </h1>
+      <input
+        type="hidden"
+        name="game-socket-id"
+        id="game-socket-id"
+        value="<%= gameSocketId %>"
+      />
+
+      
+      <div class="bingo-card-container">
+        <div>
+          <p class="blue-text"><%= user.email %> <%= user.username %>  </p>
+          
+          <table class="bingo-card" id="bingo-card-user-x">
+            <thead>
+              <tr>
+                <th>B</th>
+                <th>I</th>
+                <th>N</th>
+                <th>G</th>
+                <th>O</th>
+              </tr>
+            </thead>
+            
+            <tbody id="bingo-card-body-user-x">
+             
+              <% for (let i = 0; i < db_card_x_numbers.length; i++) { %>
+                <tr>
+                  <% for (let j = 0; j < db_card_x_numbers[i].length; j++) { %>
+                    <td><%= db_card_x_numbers[i][j] %></td>
+                  <% } %>
+                </tr>
+              <% } %>
+          
+            </tbody>
+            <script>
+          
+              addEventListenerToCell("bingo-card-body-user-x" , '/games/<%= id %>');
+              
+          </script>
+          </table>
+         
+          <button id="bingo-btn-user-x" onclick="(function() { 
+            const userwon = checkBingo('bingo-card-body-user-x' ,'<%= user.email %>' , '/games/<%= id %>');
+            
+          })()" >BINGO</button>
+          
+        </div>
+
+      <div>
+        <p class="blue-text">AI-user</p>
+        <table class="bingo-card" id="bingo-card-user-y">
+          <thead>
+            <tr>
+              <th>B</th>
+              <th>I</th>
+              <th>N</th>
+              <th>G</th>
+              <th>O</th>
+            </tr>
+          </thead>
+          
+          <tbody id="bingo-card-body-user-y">
+            
+              <% for (let i = 0; i < db_card_y_numbers.length; i++) { %>
+                <tr>
+                  <% for (let j = 0; j < db_card_y_numbers[i].length; j++) { %>
+                    <td><%= db_card_y_numbers[i][j] %></td>
+                  <% } %>
+                </tr>
+              <% } %>
+            
+          </tbody>
+    
+        </table>
+      </div>
+    </div>
+    <%
+    
+    const anotherArray = [];
+    for (let i = 0; i < db_drawn_numbers.numbers.length; i++) {
+      anotherArray.push(db_drawn_numbers.numbers[i]);
+   }
+   %>
+   
+   
+   <%
+    const drawnIndex = db_drawn_numbers.drawn_index;
+
+   %>
+   
+   <script>
+    
+    initialize_card('<%= JSON.stringify(db_card_x_selected) %>' , "bingo-card-body-user-x" );
+    initialize_card('<%= JSON.stringify(db_card_y_selected) %>' , "bingo-card-body-user-y");
+    initialize_drawn_text('<%= JSON.stringify(anotherArray) %>' ,'<%= drawnIndex %>');
+
+   </script>
+    <div id="draw-numbers-container">
+      <textarea id="draw-numbers-textarea" readonly></textarea>
+
+      </textarea>
+    
+
+    <button id="draw-numbers-btn" onclick="(function() { var last_drawn = drawOneNumber_db('<%= JSON.stringify(anotherArray) %>' , '/games/<%= id %>'); 
+        const socket = io();
+        socket.emit(`chat:message:${'<%= id %>'}`, {
+        message: `Drawn number: ${last_drawn}`,
+      });
+    })()" >Draw A Number</button>
+
+
+      <%- include('partials/chat_new', { roomId: id }) %>
+    </main>
+  
+    
 </body>
 </html>

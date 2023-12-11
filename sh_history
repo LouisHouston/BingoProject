@@ -1,0 +1,213 @@
+872  npm run start:dev
+  873  npm install http-errors 
+  874  npm install http-errors 
+  875  npm install http-errors 
+  876  npm run start:dev
+  877  npm run start:dev
+  878  mkdir backend/static
+  879  npm run start:dev
+  880  pwd
+  881  mkdir backend/views
+  882  npm install ejs
+  883  npm run start:dev
+  884  npm run start:dev
+  885  npm install --save-dev webpack webpack-cli babel-loader
+  886  history
+  887  history > sh_history
+  888  ls
+  889  pwd
+  890  touch webpack.config.js
+  891  touch frontend/index.js
+  892  npm run build
+  893  npm run build
+  894  npm run build
+  895  npm run build
+  896  npm run build
+  897  npm run build
+  898  history
+  899  history ?
+  900  history > sh_history_1
+  901  ls
+  902  cat sh_history
+  903  cat sh_history_1
+  904  pwd
+  905  npm run start:dev
+  906  npm run start:dev
+  907  npm install -savedev concurrently
+  908  npm run start_new:dev
+  909  npm run start_new:dev
+  910  npm run server:dev
+  911  npm run start_new:dev
+  912  npm run start_new:dev
+  913  npm run start_new:dev
+  914  pwd
+  915  ls
+  916  c
+  917  npm run start_new:dev
+  918  npm install -savedev concurrently
+  919  npm run start_new:dev
+  920  pwd
+  921  ls
+  922  npm run start_new:dev
+  923  npm run server:dev
+  924  npm run server:dev
+  925  npm run start_new:dev
+  926  npm install morgan
+  927  npm install cookie-parser
+  928  npm install -savedev husky lint-staged
+  929  npx run prepare
+  930  npx run prepare
+  931  npm pkg set scripts.prepare="husky install"
+  932  npm run prepare
+  933  npx husky add ./husky/pre-commit "npx lint-staged"
+  934  ls
+  935  ls -la | grep hus
+  936  npx husky add .husky/pre-commit "lint-staged'
+  937  npx husky add .husky/pre-commit "lint-staged"
+  938  npm install -savedev prettier
+  939  pwd
+  940  history
+  941  history
+  942  pwd
+  943  npm run start:dev
+  944  npn install --savedev livereload connect-livereload
+  945  npm install --savedev livereload connect-livereload
+  946  history
+  947  ls
+  948  cat sh_history_1
+  949  history >> sh_history_1
+  950  cat sh_history_1
+  951  show file sh_history_1
+  952  cat sh_history_1
+  953  ls
+  954  touch nodemon.json
+  955  npm run start:dev
+  956  npm server:dev
+  957  npm run start:dev
+  958  npm run server:dev
+  959  npm run server:dev
+  960  npm run server:dev
+  961  npm run start
+  962  echo NODE_ENV
+  963  echo $NODE_ENV
+  964  npm run start:dev
+  965  npm run server:dev
+  966  history
+  967  npm run build:dev
+  968  pwd
+  969  ls
+  970  npm run build:dev
+  971  ls
+  972  cat package.json
+  973  ls
+  974  cat webpack.config.js
+  975  ls
+  976  cd backend
+  977  ls
+  978  cd ../
+  979  ls
+  980  npm run start_mew:dev
+  981  npm run start_new:dev
+  982  npm run start_new:dev
+  983  npm run start_new:dev
+  984  npm run start_new:dev
+  985  which cratedb
+  986  which createdb
+  987  export PATH="/usr/local/opt/postgresql@15/bin:$PATH"
+  988  which createdb
+  989  export LDFLAGS="-L/usr/local/opt/postgresql@15/lib"\n  export CPPFLAGS="-I/usr/local/opt/postgresql@15/include"
+  990  cd Documents
+  991  cd App_Design
+  992  cd team-term-project-teambingo-main-Agutala
+  993  cd ..
+  994  cd term-project-amma
+  995  git Term-project-amma
+  996  ls
+  997  Term-project-amma
+  998  cd Term-project-amma
+  999  ls
+ 1000  cd Term-proiect-amma
+ 1001  npm run start_new:dev
+ 1002  history
+ 1003  ls
+ 1004  npm run start_new:dev
+ 1005  npm run start_new:dev
+ 1006  which createdb
+ 1007   export PATH="/usr/local/opt/postgresql@15/bin:$PATH"
+ 1008   export LDFLAGS="-L/usr/local/opt/postgresql@15/lib"
+ 1009  export CPPFLAGS="-I/usr/local/opt/postgresql@15/include"
+ 1010  history > sh_history_2
+ 1011  vi sh_history_2
+ 1012  pwd
+ 1013  ls -la
+ 1014  vi .env
+ 1015  npm in bcrypt
+ 1016  vi sh_history_2
+ 1017  npm i body-parser
+ 1018  vi sh_history_2
+ 1019  npm i  express-session
+ 1020  vi sh_history
+ 1021  vi sh_history_2
+ 1022  npm i  pg-promise
+ 1023  npm run start_new:dev
+ 1024  npm install http-errors
+ 1025  npm install http-errors
+ 1026  npm install --save-dev webpack webpack-cli babel-loader
+ 1027  npm install --savedev livereload connect-livereload
+ 1028  export PATH="/usr/local/opt/postgresql@15/bin:$PATH\nexport LDFLAGS="-L/usr/local/opt/postgresql@15/lib"\nexport CPPFLAGS="-I/usr/local/opt/postgresql@15/include"\nnpm in bcrypt\nnpm i body-parser\nnpm i  express-session\n npm install --save-dev webpack webpack-cli babel-loader\n\n\n\nexit\n\n\n\npdw\npwd\npwd\ncd\nexit\nexit
+ 1029  history
+ 1030  export PATH="/usr/local/opt/postgresql@15/bin:$PATH"
+ 1031  export LDFLAGS="-L/usr/local/opt/postgresql@15/lib"
+ 1032  history
+ 1033  export CPPFLAGS="-I/usr/local/opt/postgresql@15/include"
+ 1034  npm in bcrypt
+ 1035  npm in body-parser
+ 1036  npm i express-session
+ 1037  npm i pgm
+ 1038  npm i pg
+ 1039  vi .env
+ 1040  ls
+ 1041  cat package.json
+ 1042  npm in husky
+ 1043  npm in lint
+ 1044  npm install concurrently
+ 1045  npm start:dev
+ 1046  start:dev
+ 1047  npm run start:dev
+ 1048  npm run start:dev
+ 1049  npm run start:dev
+ 1050  npm run start:dev
+ 1051  npm run start:dev
+ 1052  npm run start:dev
+ 1053  npm run start:dev
+ 1054  npm run db:migrate
+ 1055  npm run db:migrate
+ 1056  npm run db:migrate
+ 1057  npm run start:dev
+ 1058  npm run start:dev
+ 1059  npm run start:dev
+ 1060  npm run start:dev
+ 1061  npm run start:dev
+ 1062  npm run start:dev
+ 1063  npm run start:dev
+ 1064  npm run start:dev
+ 1065  npm run start:dev
+ 1066  npm in pg-simple
+ 1067  npm in pg-simples
+ 1068  npm in pg-simple
+ 1069  npm in socket.io
+ 1070  npm in socket-io
+ 1071  npm in socket.io.client
+ 1072  npm in socket.io-client
+ 1073  history
+ 1074  ls
+ 1075  vi sh_history
+ 1076  history
+ 1077  history ?
+1066  npm in pg-simple
+ 1067  npm in pg-simples
+ 1068  npm in pg-simple
+ 1069  npm in socket.io
+ 1070  npm in socket-io
+ 1071  npm in socket.io.client
+ 1072  npm in socket.io-client
