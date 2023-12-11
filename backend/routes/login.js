@@ -27,6 +27,7 @@ router.post("/", async (request, response) => {
 
             request.session.loggedIn = true;
             request.session.user = user;
+            console.log("finally" + user);
             response.redirect("/"); // redirect
         } else {
             // auth failed

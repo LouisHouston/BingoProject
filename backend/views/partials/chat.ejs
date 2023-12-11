@@ -11,6 +11,7 @@
 <script> // we should probably move this to front end global_lobby.js and then include the script fk it
     const socket = io.connect("http://localhost:3000");
 
+    socket.emit("joinGame", '<%=gamecode%>');
     function sendMessage(e) {
         e.preventDefault();
         const input = document.querySelector('input');
@@ -19,9 +20,8 @@
                 content: input.value,
                 sender: '<%= user.username.username %>', 
                 timestamp: new Date().toISOString().slice(0, 19).replace("T", " "), // Format as 'YYYY-MM-DD HH:MI:SS'
-                gamecode: '<%=gamecode %> '
+                gamecode: '<%=gamecode%>'
             };
-        
         socket.emit("message", messageData);
         input.value = "";
     }
@@ -40,4 +40,16 @@
         console.log(messageData);
         document.querySelector('ul').appendChild(li);
     });
+
+    socket.on("previousMessages", (previousMessages) => {
+        previousMessages.forEach((messageData) =>{
+            appendMessageToUI(messageData);
+        })
+    })
+
+    function appendMessageToUI(messageData){
+        const li = document.createElement('li');
+        li.textContent = messageData.timestamp + ' ' + messageData.sender + ' ' + messageData.content;
+        document.querySelector('ul').appendChild(li);
+    }
 </script>

@@ -71,30 +71,41 @@ const io = new websocket.Server(server, {
 
 io.on("connection", (socket) => {
     console.log("A user connected");
+    const db = configureDatabase();
+    db.connect();
+
+    socket.on("joinGame", (gamecode)=>{
+        db.query("SELECT * FROM gamechat WHERE game_id = $1", [gamecode], (error, result) => {
+            if (error) {
+                console.error("Error getting gamechat messages", error);
+            } else {
+                const formattedMessages = result.rows.map((row) => ({
+                    content: row.message,
+                    sender: row.user_id,
+                    timestamp: row.time_sent,
+                    gamecode: row.game_id,
+                }));
+                console.log("emitting from gamechat: " + formattedMessages)
+                socket.emit("previousMessages", formattedMessages);
+            }
+        })
+    })
 
     socket.on("message", (messageData) => {
         const content = messageData.content;
         const sender = messageData.sender;
         const timestamp = messageData.timestamp;
         const gamecode = messageData.gamecode;
-        const db = configureDatabase();
-
-        db.connect((err) => {
-            if (err) {
-                console.error('db connection error:', err);
-            } else {
+        console.log(messageData);
                 console.log('Connected to the database');
-                db.query("INSERT INTO gamechat (player_name, message_time, message_content) VALUES ($1, $2, $3)", [sender, timestamp, content], (error, result) => {
+                db.query("INSERT INTO gamechat (user_id, game_id, message, time_sent) VALUES ($1, $2, $3 , $4)", [sender, gamecode, content, timestamp], (error, result) => {
                     if (error) {
                         console.error("frror saving message to the db:", error);
                     } else {
                         console.log('message inserted good');
                         io.emit("message", messageData);
                     }
-                    db.end();
                 });
-            }
-        });
     });
 
 

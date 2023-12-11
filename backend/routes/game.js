@@ -14,7 +14,7 @@ router.get("/:gamecode", (request, response) => {
     const gameData = getGameData(gamecode);
 
     if (gameData) {
-        response.render("game.ejs", { pageTitle: 'In game', gameData, loggedIn: request.session.loggedIn ,user});
+        response.render("game.ejs", { pageTitle: 'In game', gameData, loggedIn: request.session.loggedIn , user, gamecode});
     } else {
         response.status(404).send("Game not found :(");
     }

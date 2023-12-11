@@ -22,8 +22,6 @@ router.post("/", async (request,response) =>  {
     } catch (error) {
         console.error("Error creating game :(", error);
         response.status(500).send("Internal server error.");
-    } finally {
-        db.end(); 
     }
 });
 
