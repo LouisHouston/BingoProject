@@ -62,7 +62,7 @@ const sessionMiddleware = session({
     conString: process.env.DATABASE_URL,
   }),
 
-  secret: process.env.SESSION_SECRET,
+  secret: "asdf",
   resave: false,
   saveUninitialized: true,
   cookie: { secure: process.env.NODE_ENV !== "development" },
